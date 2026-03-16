@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DAILY OPS</title>
+<title>DAILY OPS — BLACK OPS EDITION</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -26,7 +26,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 .nav{display:flex;background:var(--s1);border-bottom:1px solid var(--b2);position:sticky;top:0;z-index:500;backdrop-filter:blur(12px);}
 .logo{padding:0 20px;border-right:1px solid var(--b2);display:flex;flex-direction:column;justify-content:center;height:48px;flex-shrink:0;}
 .logo-t{font-family:var(--fw);font-size:18px;font-weight:800;letter-spacing:4px;color:#fff;text-transform:uppercase;line-height:1;}
-.logo-s{font-family:var(--fm);font-size:8px;color:var(--acc);letter-spacing:3px;}
+.logo-s{font-family:var(--fm);font-size:8px;color:#c0392b;letter-spacing:3px;text-shadow:0 0 6px rgba(192,57,43,.3);}
 .tabs{display:flex;flex:1;height:48px;overflow-x:auto;}
 .tab{height:100%;padding:0 16px;background:none;border:none;border-right:1px solid var(--b2);color:var(--t3);font-family:var(--fw);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .15s;white-space:nowrap;position:relative;}
 .tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--acc);transform:scaleX(0);transition:transform .2s;}
@@ -132,7 +132,8 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 .task-item{display:flex;align-items:center;gap:7px;background:var(--s2);border:1px solid var(--b2);border-left:3px solid transparent;padding:9px 10px;transition:all .2s;}
 .task-item:hover{background:var(--s3);border-color:rgba(212,160,23,.2);}
 .task-item.done{opacity:.36;border-left-color:var(--grn)!important;}
-.task-item.overdue{border-left-color:var(--red)!important;}
+.task-item.overdue{border-left-color:var(--red)!important;animation:overdueBlink 2s infinite;}
+@keyframes overdueBlink{0%,100%{background:var(--s2)}50%{background:rgba(192,57,43,.08)}}
 .t-work{border-left-color:var(--blu);}
 .t-health{border-left-color:var(--grn);}
 .t-study{border-left-color:var(--pur);}
@@ -373,16 +374,12 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 .btn-no:hover{border-color:var(--red);color:var(--red);}
 
 /* POPUPS */
-.xp-pop{position:fixed;font-family:var(--fw);font-size:22px;font-weight:800;color:var(--acc2);text-shadow:0 0 12px var(--acc);pointer-events:none;z-index:9000;animation:xpf 1.3s ease-out forwards;letter-spacing:3px;}
-@keyframes xpf{0%{opacity:1;transform:translateY(0) scale(1)}20%{opacity:1;transform:translateY(-12px) scale(1.15)}100%{opacity:0;transform:translateY(-70px) scale(.85)}}
 .ach-pop{position:fixed;bottom:16px;right:16px;background:var(--s2);border:1px solid var(--acc);border-left:3px solid var(--acc);padding:10px 14px;z-index:9000;animation:achIn .4s ease,achOut .5s ease 3.5s forwards;display:flex;align-items:center;gap:9px;max-width:270px;}
 @keyframes achIn{from{transform:translateX(110%)}to{transform:translateX(0)}}
 @keyframes achOut{from{opacity:1}to{opacity:0}}
 .ach-pop-icon{font-size:18px;}
 .ach-pop-title{font-family:var(--fw);font-size:11px;font-weight:700;color:var(--acc2);letter-spacing:2px;text-transform:uppercase;}
 .ach-pop-name{font-family:var(--fm);font-size:9px;color:var(--t2);margin-top:1px;}
-.particle{position:fixed;pointer-events:none;z-index:8500;border-radius:50%;animation:pf 1s ease-out forwards;}
-@keyframes pf{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
 .sound-ind{position:fixed;bottom:12px;left:12px;font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:2px;cursor:pointer;z-index:100;background:rgba(0,0,0,.6);padding:4px 8px;border:1px solid var(--b2);transition:color .2s;}
 .sound-ind:hover{color:var(--acc);}
 @media(max-width:860px){.mission-wrap{grid-template-columns:1fr;}.kpis{grid-template-columns:repeat(2,1fr);}.ach-grid{grid-template-columns:repeat(2,1fr);}.titles-grid{grid-template-columns:repeat(3,1fr);}}
@@ -447,7 +444,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 .chal-row{animation:slideUp .3s ease both;}
 .task-item{animation:slideUp .25s ease both;}
 
-/* ── OPERATOR CARD EXPORT ── */
+/* ── COMBAT CARD EXPORT ── */
 .op-export-wrap{position:relative;}
 .op-export-overlay{
   position:absolute;inset:0;background:rgba(0,0,0,.7);
@@ -523,17 +520,109 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 .rec-reset-btn{background:none;border:1px solid rgba(155,89,182,.25);color:var(--pur);font-family:var(--fw);font-size:9px;font-weight:700;letter-spacing:2px;padding:3px 10px;cursor:pointer;text-transform:uppercase;transition:background .15s;}
 .rec-reset-btn:hover{background:rgba(155,89,182,.1);}
 
+/* ═══════ TRIPLE-A POLISH ═══════ */
+
+/* CRT scanlines overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:100;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+  opacity:var(--scanline-opacity,.35);mix-blend-mode:multiply;}
+/* Vignette */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:99;
+  background:radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.35) 100%);}
+
+/* Logo glitch effect — Black Ops blood style */
+.logo-t{position:relative;color:#c0392b;text-shadow:0 0 8px rgba(192,57,43,.5),0 0 20px rgba(192,57,43,.2);}
+.logo-t::before,.logo-t::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;}
+.logo-t::before{color:#ff1a1a;clip-path:inset(0 0 60% 0);animation:glitch1 3s infinite linear alternate-reverse;}
+.logo-t::after{color:#8b0000;clip-path:inset(60% 0 0 0);animation:glitch2 2.5s infinite linear alternate-reverse;}
+@keyframes glitch1{0%,90%{transform:translate(0)}92%{transform:translate(-2px,-1px)}94%{transform:translate(2px,1px)}96%{transform:translate(-1px,2px)}100%{transform:translate(0)}}
+@keyframes glitch2{0%,88%{transform:translate(0)}90%{transform:translate(2px,1px)}93%{transform:translate(-2px,-1px)}96%{transform:translate(1px,-2px)}100%{transform:translate(0)}}
+
+/* Nav pending badge */
+.nav-badge{position:absolute;top:-4px;right:-8px;background:var(--red);color:#fff;font-family:var(--fm);font-size:8px;font-weight:700;
+  min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;
+  line-height:1;box-shadow:0 0 6px var(--red);animation:badgePulse 2s infinite;}
+@keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+/* XP bar segments */
+.xp-track{position:relative;}
+.xp-track::after{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 9.8%,rgba(255,255,255,.08) 9.8%,rgba(255,255,255,.08) 10.2%);
+  pointer-events:none;}
+
+/* Task hover sweep */
+.task-item{position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s;}
+.task-item:hover{transform:translateX(3px);box-shadow:inset 3px 0 0 var(--acc);}
+.task-item::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);transition:left .4s;}
+.task-item:hover::after{left:100%;}
+
+/* LEGENDARY pulse */
+.task-item[data-diff="legendary"]{animation:legPulse 2s infinite;border-color:rgba(155,89,182,.5)!important;}
+@keyframes legPulse{0%,100%{box-shadow:0 0 0 rgba(155,89,182,0)}50%{box-shadow:0 0 12px rgba(155,89,182,.3)}}
+
+/* Prestige grid glow */
+.pimg.current{box-shadow:0 0 16px var(--acc);border:2px solid var(--acc);}
+.pimg.locked{filter:blur(1px) grayscale(.5);opacity:.4;}
+
+/* Combo banner */
+.combo-banner{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#d4a017,#f0c040);
+  color:#000;font-family:var(--fw);font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  padding:8px 24px;border-radius:4px;z-index:9000;display:none;align-items:center;gap:10px;
+  box-shadow:0 4px 20px rgba(212,160,23,.5);animation:comboSlide .3s ease-out;}
+.combo-banner.show{display:flex;}
+@keyframes comboSlide{from{top:40px;opacity:0}to{top:60px;opacity:1}}
+.combo-cnt{font-size:20px;font-weight:900;}
+.combo-mult{font-size:11px;opacity:.7;}
+
+/* Focus/Zen mode */
+body.zen-mode .nav,body.zen-mode .stats-bar,body.zen-mode .day-strip,body.zen-mode .streak-banner,
+body.zen-mode .xp-strip,body.zen-mode .prestige-banner,body.zen-mode #chalWrap{opacity:.15;pointer-events:none;filter:blur(2px);transition:all .3s;}
+.zen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:500;display:none;align-items:center;justify-content:center;
+  color:var(--acc);font-family:var(--fw);font-size:28px;letter-spacing:8px;text-transform:uppercase;pointer-events:none;}
+.zen-overlay.show{display:flex;}
+
+/* Gold particles */
+.particle{position:fixed;pointer-events:none;z-index:10000;border-radius:50%;
+  animation:particleFly .8s ease-out forwards;}
+@keyframes particleFly{
+  0%{opacity:1;transform:translate(0,0) scale(1)}
+  100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}
+}
+
+/* Rank-up typewriter */
+.typewriter{overflow:hidden;white-space:nowrap;border-right:2px solid var(--acc);
+  animation:typewrite 1.2s steps(20) 1s forwards,blink .5s step-end infinite alternate;}
+@keyframes typewrite{from{width:0}to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+
+
+/* ── 30-DAY TREND CHART ── */
+.trend-chart{height:80px;display:flex;align-items:flex-end;gap:2px;padding:4px 0;}
+.trend-bar{flex:1;min-width:0;background:var(--acc);border-radius:2px 2px 0 0;transition:height .3s;position:relative;cursor:default;min-height:2px;}
+.trend-bar:hover{background:var(--acc2);}
+.trend-bar:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  background:var(--s1);border:1px solid var(--b2);color:var(--t1);font-family:var(--fm);font-size:8px;padding:2px 5px;
+  white-space:nowrap;z-index:100;pointer-events:none;}
+.trend-bar.zero{background:var(--b2);min-height:2px;}
+
+/* Responsive */
+@media(max-width:768px){
+  .combo-banner{font-size:11px;padding:6px 14px;}
+}
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <div class="nav">
-  <div class="logo"><div class="logo-t">Daily Ops</div><div class="logo-s">Prestige Edition</div></div>
+  <div class="logo"><div class="logo-t" data-text="DAILY OPS">DAILY OPS</div><div class="logo-s">BLACK OPS EDITION</div></div>
   <div class="tabs">
-    <button class="tab on" data-page="missions">⚔ Missions</button>
-    <button class="tab" data-page="stats">📊 Stats</button>
-    <button class="tab" data-page="achievements">🏅 Medals</button>
+    <button class="tab on" data-page="missions" style="position:relative">⚔ Ops<span class="nav-badge" id="navBadge" style="display:none">0</span></button>
+    <button class="tab" data-page="stats">📊 Intel</button>
+    <button class="tab" data-page="achievements">🎖 Medals</button>
     <button class="tab" data-page="calendar">📅 Calendar</button>
     <button class="tab" data-page="leaderboard">🏆 Squad</button>
     <button class="tab" data-page="settings">⚙ Settings</button>
@@ -543,7 +632,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
     <div class="hud-info">
       <input class="hud-name" id="hudName" value="OPERATOR" maxlength="16">
       <div class="hud-rank" id="hudRank">LVL 1 — PRIVATE</div>
-      <div class="hud-sub" id="hudSub">NO PRESTIGE</div>
+      <div class="hud-sub" id="hudSub">NO PRESTIGE RANK</div>
       <div class="hud-title" id="hudTitle"></div>
     </div>
     <button class="notif-btn" id="notifBtn" title="Notifications">🔔</button>
@@ -551,8 +640,13 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 </div>
 
 <!-- STREAK BANNER -->
+<!-- COMBO BANNER -->
+<div class="combo-banner" id="comboBanner"><span class="combo-cnt" id="comboCnt">3</span><span>COMBO!</span><span class="combo-mult" id="comboMult">×1.2 XP</span></div>
+<!-- ZEN OVERLAY -->
+<div class="zen-overlay" id="zenOverlay">🎯 FOCUS MODE</div>
+
 <div class="streak-banner" id="streakBanner" style="display:none">
-  <div class="streak-banner-text" id="streakBannerText">🔥 STREAK ACTIVE</div>
+  <div class="streak-banner-text" id="streakBannerText">🔥 KILLSTREAK ACTIVE</div>
   <div class="streak-banner-flames" id="streakBannerFlames"></div>
   <button class="streak-banner-close" id="streakBannerClose">×</button>
 </div>
@@ -572,13 +666,13 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="sstat"><span class="sstat-v" id="sXP">0</span><span class="sstat-l">Total XP</span></div>
-  <div class="sstat"><span class="sstat-v" id="sDone">0</span><span class="sstat-l">Done</span></div>
-  <div class="sstat"><span class="sstat-v" id="sPend">0</span><span class="sstat-l">Pending</span></div>
-  <div class="sstat"><span class="sstat-v" id="sRate">0%</span><span class="sstat-l">Success</span></div>
+  <div class="sstat"><span class="sstat-v" id="sDone">0</span><span class="sstat-l">Kills</span></div>
+  <div class="sstat"><span class="sstat-v" id="sPend">0</span><span class="sstat-l">Active Ops</span></div>
+  <div class="sstat"><span class="sstat-v" id="sRate">0%</span><span class="sstat-l">Kill Rate</span></div>
 </div>
 <div class="day-strip">
-  <span class="day-text">📅 <span id="dayLbl"></span> — <span id="dayDone">0</span> tasks done today</span>
-  <button class="day-btn" id="dayResetBtn">New Day Reset</button>
+  <span class="day-text">📅 <span id="dayLbl"></span> — <span id="dayDone">0</span> ops completed today</span>
+  <button class="day-btn" id="dayResetBtn">New Day Ops</button>
 </div>
 
 <!-- MISSIONS -->
@@ -587,32 +681,32 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
     <div class="mission-main">
       <div id="chalWrap">
         <div class="chal-panel" id="dailyPanel">
-          <div class="chal-hdr"><span class="chal-hdr-title">⚡ Daily Challenges</span><span class="chal-hdr-xp" id="dailyXPLeft"></span></div>
+          <div class="chal-hdr"><span class="chal-hdr-title">⚡ Daily Directives</span><span class="chal-hdr-xp" id="dailyXPLeft"></span></div>
           <div id="dailyList"></div>
         </div>
         <div class="chal-panel weekly" id="weeklyPanel" style="margin-top:6px">
-          <div class="chal-hdr"><span class="chal-hdr-title">📋 Weekly Missions</span><span class="chal-hdr-xp" id="weeklyXPLeft"></span></div>
+          <div class="chal-hdr"><span class="chal-hdr-title">📋 Weekly Operations</span><span class="chal-hdr-xp" id="weeklyXPLeft"></span></div>
           <div id="weeklyList"></div>
         </div>
       </div>
       <div class="sec-hdr" style="margin-top:14px">
-        <div class="sec-title"><div class="sec-bar"></div>My Missions</div>
+        <div class="sec-title"><div class="sec-bar"></div>Active Ops</div>
         <span class="sec-meta" id="taskCount">0 active</span>
       </div>
 
       <!-- RECURRING TASKS MANAGER -->
       <div class="rec-manager" id="recManager">
         <div class="rec-hdr" id="recHdr">
-          <div class="rec-hdr-title">🔄 Daily Routines<span class="rec-hdr-arrow" id="recArrow">▼</span></div>
+          <div class="rec-hdr-title">🔄 Standing Orders<span class="rec-hdr-arrow" id="recArrow">▼</span></div>
           <span class="rec-hdr-count" id="recCount">0 tasks</span>
         </div>
         <div class="rec-body" id="recBody">
           <div class="rec-add-form">
-            <input type="text" class="rec-inp" id="recInput" placeholder="Add daily routine..." maxlength="60">
+            <input type="text" class="rec-inp" id="recInput" placeholder="New standing order..." maxlength="60">
             <select class="rec-sel" id="recCatSel">
-              <option value="misc">MISC</option>
+              <option value="misc">OTHER</option>
               <option value="work">WORK</option>
-              <option value="health">FIT</option>
+              <option value="health">GYM</option>
               <option value="study">STUDY</option>
             </select>
             <select class="rec-sel" id="recDiffSel">
@@ -625,9 +719,9 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
               <option value="200" selected>200</option>
               <option value="300">300</option>
             </select>
-            <button class="rec-btn" id="recAddBtn">+ ADD</button>
+            <button class="rec-btn" id="recAddBtn">+ DEPLOY</button>
           </div>
-          <div class="rec-divider"><div class="rec-divider-line"></div><div class="rec-divider-text">Today's Routines</div><div class="rec-divider-line"></div></div>
+          <div class="rec-divider"><div class="rec-divider-line"></div><div class="rec-divider-text">Today's Orders</div><div class="rec-divider-line"></div></div>
           <div class="rec-list" id="recList"></div>
           <div class="rec-reset-strip">
             <span class="rec-reset-text" id="recProgress">0 / 0 done today</span>
@@ -637,20 +731,20 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
       </div>
 
       <div class="add-form">
-        <input type="text" class="add-input" id="taskInput" placeholder="New mission... (press Enter)" maxlength="80">
-        <select class="add-sel" id="catSel"><option value="misc">MISC</option><option value="work">WORK</option><option value="health">FIT</option><option value="study">STUDY</option></select>
+        <input type="text" class="add-input" id="taskInput" placeholder="New op... (press Enter)" maxlength="80">
+        <select class="add-sel" id="catSel"><option value="misc">OTHER</option><option value="work">WORK</option><option value="health">GYM</option><option value="study">STUDY</option></select>
         <select class="add-sel" id="diffSel"><option value="easy">EASY</option><option value="normal" selected>NORM</option><option value="hard">HARD</option><option value="legendary">LGND</option></select>
         <select class="add-sel" id="xpSel"><option value="100">100</option><option value="200" selected>200</option><option value="300">300</option><option value="500">500</option><option value="1000">1000</option></select>
-        <button class="add-btn" id="addBtn">+ Add</button>
+        <button class="add-btn" id="addBtn">+ Deploy</button>
       </div>
       <div class="filter-bar">
-        <button class="ftab on" data-filter="all">All</button>
-        <button class="ftab" data-filter="pending">Active</button>
-        <button class="ftab" data-filter="done">Done</button>
-        <button class="ftab" data-filter="recurring">Recurring</button>
+        <button class="ftab on" data-filter="all">All Ops</button>
+        <button class="ftab" data-filter="pending">In Progress</button>
+        <button class="ftab" data-filter="done">Completed</button>
+        <button class="ftab" data-filter="recurring">Standing</button>
       </div>
       <ul class="task-list" id="taskList"></ul>
-      <div class="empty" id="emptyState" style="display:none">[ No Active Missions ]</div>
+      <div class="empty" id="emptyState" style="display:none"><div style="font-size:24px;margin-bottom:6px">☠</div><div>No Active Ops</div><div id="emptyQuote" style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:8px;font-style:italic"></div></div>
     </div>
     <div class="mission-side">
       <div class="side-sec">
@@ -662,14 +756,22 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
         <div class="rank-list" id="rankList"></div>
       </div>
       <div class="pom">
-        <div class="pom-title"><div class="pom-bar2"></div>🍅 Focus Timer</div>
+        <div class="pom-title"><div class="pom-bar2"></div>🎯 Combat Timer</div>
         <select class="pom-sel" id="pomTaskSel"><option value="">— Link to task —</option></select>
+        <div style="display:flex;gap:4px;margin-bottom:6px;">
+          <select class="pom-sel" id="pomDurSel" style="flex:1">
+            <option value="25">25 min</option>
+            <option value="45">45 min</option>
+            <option value="60">60 min</option>
+            <option value="90">90 min</option>
+          </select>
+        </div>
         <div class="pom-display"><div class="pom-time" id="pomTime">25:00</div><div class="pom-lbl" id="pomLbl">FOCUS SESSION</div></div>
         <div class="pom-track"><div class="pom-fill" id="pomFill" style="width:100%"></div></div>
         <div class="pom-btns">
           <button class="pbtn" id="pomStartBtn">Start</button>
           <button class="pbtn" id="pomResetBtn">Reset</button>
-          <button class="pbtn" id="pomModeBtn">Break</button>
+          <button class="pbtn" id="pomModeBtn">Rest</button>
         </div>
       </div>
     </div>
@@ -681,6 +783,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
   <div class="stats-pg">
     <div class="kpis" id="kpiRow"></div>
     <div class="chart-card"><div class="chart-title"><div class="chart-bar"></div>XP — Last 7 Days</div><div class="bar-chart" id="weekChart"></div></div>
+    <div class="chart-card"><div class="chart-title"><div class="chart-bar"></div>XP Trend — 30 Days</div><div class="trend-chart" id="trendChart"></div></div>
     <div class="g2">
       <div class="chart-card" style="margin-bottom:0"><div class="chart-title"><div class="chart-bar"></div>By Category</div><div id="catChart"></div></div>
       <div class="chart-card" style="margin-bottom:0"><div class="chart-title"><div class="chart-bar"></div>By Difficulty</div><div id="diffChart"></div></div>
@@ -695,7 +798,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
               <div>
                 <div class="op-name" id="opName">OPERATOR</div>
                 <div class="op-rank" id="opRankLbl">LVL 1 — PRIVATE</div>
-                <div class="op-prestige-lbl" id="opPrestigeLbl">NO PRESTIGE</div>
+                <div class="op-prestige-lbl" id="opPrestigeLbl">NO PRESTIGE RANK</div>
                 <div class="op-title-lbl" id="opTitleLbl"></div>
               </div>
             </div>
@@ -778,7 +881,7 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
       <div class="name-row"><input class="name-inp" id="nameInp" placeholder="Your Callsign" maxlength="16"><button class="sbtn" id="saveNameBtn">Save</button></div>
     </div>
     <div class="s-card">
-      <div class="s-title"><div class="s-bar"></div>Theme</div>
+      <div class="s-title"><div class="s-bar"></div>Combat Theme</div>
       <div class="theme-btns">
         <button class="theme-btn on" data-theme="dark">Dark Ops</button>
         <button class="theme-btn" data-theme="navy">Navy</button>
@@ -787,13 +890,16 @@ body{background:var(--bg);color:var(--t1);font-family:var(--fb);min-height:100vh
       </div>
     </div>
     <div class="s-card">
-      <div class="s-title"><div class="s-bar"></div>Preferences</div>
+      <div class="s-title"><div class="s-bar"></div>Tactical Prefs</div>
       <div class="s-row"><div><div class="s-lbl">Sound Effects</div><div class="s-sub">Rank up & task complete sounds</div></div><button class="toggle" id="tSound"></button></div>
       <div class="s-row"><div><div class="s-lbl">Daily Challenges</div><div class="s-sub">Show daily & weekly missions</div></div><button class="toggle on" id="tChallenges"></button></div>
       <div class="s-row"><div><div class="s-lbl">Particle Effects</div><div class="s-sub">Explosion animation on rank up</div></div><button class="toggle on" id="tParticles"></button></div>
+      <div class="s-row"><div><div class="s-lbl">Combo System</div><div class="s-sub">XP multiplier for rapid task completion</div></div><button class="toggle on" id="tCombo"></button></div>
+      <div class="s-row"><div><div class="s-lbl">Focus Mode</div><div class="s-sub">Dim distractions &amp; focus on tasks</div></div><button class="toggle" id="tZen"></button></div>
+      <div class="s-row"><div><div class="s-lbl">CRT Scanlines</div><div class="s-sub">Retro screen overlay effect</div></div><button class="toggle on" id="tScanlines"></button></div>
     </div>
     <div class="s-card">
-      <div class="s-title"><div class="s-bar"></div>Data</div>
+      <div class="s-title"><div class="s-bar"></div>Field Data</div>
       <div class="s-row"><div><div class="s-lbl">Export Save</div></div><button class="sbtn" id="exportBtn">Export JSON</button></div>
       <div class="s-row"><div><div class="s-lbl">Import Save</div></div><button class="sbtn" id="importBtn">Import JSON</button><input type="file" id="importFile" accept=".json" style="display:none"></div>
       <div class="s-row"><div><div class="s-lbl">Reset All Progress</div><div class="s-sub" style="color:var(--red)">Cannot be undone</div></div><button class="sbtn danger" id="resetBtn">Reset</button></div>
@@ -873,7 +979,7 @@ const PRESTIGE_NAMES=['No Prestige','1st Prestige','2nd Prestige','3rd Prestige'
 const DIFF_XP={easy:.75,normal:1,hard:1.5,legendary:2.5};
 const DIFF_COLOR={easy:'#27ae60',normal:'var(--acc)',hard:'#e67e22',legendary:'#e040fb'};
 const CAT_COLOR={misc:'var(--t3)',work:'var(--blu)',health:'var(--grn)',study:'var(--pur)'};
-const CAT_LABEL={misc:'MISC',work:'WORK',health:'FIT',study:'STUDY'};
+const CAT_LABEL={misc:'OTHER',work:'WORK',health:'GYM',study:'STUDY'};
 const MONTH_NAMES=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
 
 const CHALLENGE_POOL=[
@@ -925,7 +1031,7 @@ const TITLES=[
 const DEFAULT={
   playerName:'OPERATOR',xp:0,levelXP:0,prestige:0,totalXP:0,done:0,
   tasks:[],streak:0,lastDay:'',history:{},dailyTaskHistory:{},
-  settings:{sound:false,challenges:true,particles:true},
+  settings:{sound:false,challenges:true,particles:true,combo:true,zen:false,scanlines:true},
   achievements:[],legendaryDone:0,challengesDone:0,catsUsed:0,catsDone:[],
   pomSessions:0,dailyChallenges:[],dailyChalDate:'',
   weeklyChallenges:[],weeklyChalDate:'',dailyXPEarned:0,
@@ -933,6 +1039,7 @@ const DEFAULT={
 };
 let S=JSON.parse(localStorage.getItem('dops_v6')||'null')||{...DEFAULT};
 Object.keys(DEFAULT).forEach(k=>{if(S[k]===undefined)S[k]=DEFAULT[k];});
+if(S.settings){Object.keys(DEFAULT.settings).forEach(k=>{if(S.settings[k]===undefined)S.settings[k]=DEFAULT.settings[k];});}
 function save(){localStorage.setItem('dops_v6',JSON.stringify(S));}
 
 let supabase=null;
@@ -954,10 +1061,9 @@ function showXpPop(x,y,xp,suf=''){
   const p=document.createElement('div');
   p.className='xp-pop';
   p.style.left=(x-50)+'px';
-  p.style.top=(y-20)+'px';
+  p.style.top=(y-30)+'px';
   p.innerHTML=`+${xp} XP${suf?`<span class="xp-mult-label">${suf}</span>`:''}`;
   document.body.appendChild(p);
-  // Shake the XP bar
   const bar=document.getElementById('xpBar');
   if(bar){bar.classList.remove('gained');void bar.offsetWidth;bar.classList.add('gained');setTimeout(()=>bar.classList.remove('gained'),650);}
   setTimeout(()=>p.remove(),1700);
@@ -965,7 +1071,7 @@ function showXpPop(x,y,xp,suf=''){
 function showCenterPop(msg){
   const p=document.createElement('div');
   p.className='xp-pop';
-  p.style.cssText='left:50%;top:22%;transform:translateX(-50%);font-size:18px;text-align:center;white-space:nowrap;z-index:9500;';
+  p.style.cssText='left:50%;top:40%;transform:translateX(-50%);font-size:18px;text-align:center;white-space:nowrap;z-index:9500;';
   p.textContent=msg;
   document.body.appendChild(p);
   setTimeout(()=>p.remove(),2000);
@@ -1036,6 +1142,95 @@ function checkAchievements(){
 }
 
 // ═══ MAIN UPDATE ═══
+// ═══ SCANLINES TOGGLE ═══
+function applyScanlines(){
+  document.body.style.setProperty('--scanline-opacity',S.settings.scanlines?'0.35':'0');
+}
+
+// ═══ COMBO SYSTEM ═══
+let comboTimestamps=[];
+let comboActive=false;
+let comboTimer=null;
+const COMBO_WINDOW=3600000; // 1hr in ms
+const COMBO_MIN=3;
+const COMBO_MULT=1.2;
+
+function registerCombo(){
+  if(!S.settings.combo)return;
+  const now=Date.now();
+  comboTimestamps.push(now);
+  comboTimestamps=comboTimestamps.filter(t=>now-t<COMBO_WINDOW);
+  if(comboTimestamps.length>=COMBO_MIN&&!comboActive){
+    comboActive=true;
+    showComboBanner();
+  }
+  if(comboActive){
+    updateComboBanner();
+    clearTimeout(comboTimer);
+    comboTimer=setTimeout(endCombo,COMBO_WINDOW);
+  }
+}
+function showComboBanner(){
+  const b=el('comboBanner');if(!b)return;
+  b.classList.add('show');
+  playSound('complete');
+}
+function updateComboBanner(){
+  const cnt=comboTimestamps.length;
+  set('comboCnt',cnt);
+  const mult=1+(cnt-COMBO_MIN+1)*0.1;
+  set('comboMult','×'+mult.toFixed(1)+' XP');
+}
+function endCombo(){
+  comboActive=false;comboTimestamps=[];
+  const b=el('comboBanner');if(b)b.classList.remove('show');
+}
+function getComboMult(){
+  if(!comboActive)return 1;
+  const cnt=comboTimestamps.length;
+  return 1+(cnt-COMBO_MIN+1)*0.1;
+}
+
+// ═══ ZEN / FOCUS MODE ═══
+let zenActive=false;
+function toggleZenMode(){
+  zenActive=!zenActive;
+  document.body.classList.toggle('zen-mode',zenActive);
+  const ov=el('zenOverlay');
+  if(ov)ov.classList.toggle('show',zenActive);
+  if(zenActive)setTimeout(()=>{const ov2=el('zenOverlay');if(ov2)ov2.classList.remove('show');},2000);
+}
+
+// ═══ NAV BADGE ═══
+function updateNavBadge(){
+  const pending=S.tasks.filter(t=>!t.done).length;
+  const badge=el('navBadge');
+  if(!badge)return;
+  if(pending>0){badge.textContent=pending;badge.style.display='flex';}
+  else{badge.style.display='none';}
+}
+
+// ═══ GOLD RAIN (enhanced rank-up particles) ═══
+function goldRain(){
+  if(!S.settings.particles)return;
+  const colors=['#d4a017','#f0c040','#ffd700','#fff','#ffaa00'];
+  for(let w=0;w<3;w++){
+    setTimeout(()=>{
+      for(let i=0;i<24;i++){
+        const p=document.createElement('div');p.className='particle';
+        const sz=Math.random()*10+4;
+        const x=Math.random()*window.innerWidth;
+        const y=window.innerHeight*0.3+Math.random()*window.innerHeight*0.3;
+        const ang=Math.random()*360;
+        const dist=Math.random()*160+60;
+        p.style.cssText=`left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};--tx:${Math.cos(ang*Math.PI/180)*dist}px;--ty:${Math.sin(ang*Math.PI/180)*dist-80}px;animation-duration:${Math.random()*.6+.7}s;`;
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),1400);
+      }
+    },w*300);
+  }
+}
+
 function update(){
   checkStreak();ensureChallenges();updateChallengeProgress();
   const lvl=getLevel();
@@ -1061,7 +1256,7 @@ function update(){
   set('sDone',done);
   set('sPend',S.tasks.filter(t=>!t.done).length);
   set('sRate',total>0?Math.round((done/total)*100)+'%':'0%');
-  set('taskCount',S.tasks.filter(t=>!t.done).length+' active');
+  set('taskCount',S.tasks.filter(t=>!t.done).length+' ops active');
   set('hudRank','LVL '+lvl+' — '+rn.toUpperCase());
   set('hudSub',PRESTIGE_NAMES[S.prestige].toUpperCase());
   set('hudTitle',title?'"'+title+'"':'');
@@ -1080,15 +1275,20 @@ function update(){
   // Sound indicator
   set('soundInd',(S.settings.sound?'🔊 Sound On':'🔇 Sound Off'));
   // Toggles
-  ['tSound','tChallenges','tParticles'].forEach(id=>{
+  ['tSound','tChallenges','tParticles','tCombo','tZen','tScanlines'].forEach(id=>{
     const btn=el(id);if(btn){const key=id.replace('t','').toLowerCase();btn.className='toggle'+(S.settings[key]?' on':'');}
   });
   if(el('tSound'))el('tSound').className='toggle'+(S.settings.sound?' on':'');
   if(el('tChallenges'))el('tChallenges').className='toggle'+(S.settings.challenges?' on':'');
   if(el('tParticles'))el('tParticles').className='toggle'+(S.settings.particles?' on':'');
+  if(el('tCombo'))el('tCombo').className='toggle'+(S.settings.combo?' on':'');
+  if(el('tZen'))el('tZen').className='toggle'+(S.settings.zen?' on':'');
+  if(el('tScanlines'))el('tScanlines').className='toggle'+(S.settings.scanlines?' on':'');
   // Challenges
   if(el('chalWrap'))el('chalWrap').style.display=S.settings.challenges?'block':'none';
+  applyScanlines();
   renderChallenges();renderPrestige();renderRanks();renderTasks();renderPomTasks();updateOpCard();renderRoutines();
+  updateNavBadge();
 }
 
 // ═══ RENDER CHALLENGES ═══
@@ -1148,13 +1348,32 @@ function renderTasks(){
   if(filter==='pending')tasks=tasks.filter(t=>!t.done&&!t.recurring);
   else if(filter==='done')tasks=tasks.filter(t=>t.done);
   else if(filter==='recurring')tasks=tasks.filter(t=>t.recurring);
-  if(!tasks.length){if(list)list.innerHTML='';if(empty)empty.style.display='block';return;}
+  if(!tasks.length){
+    if(list)list.innerHTML='';
+    if(empty){
+      empty.style.display='block';
+      const quotes=[
+        '"The only easy day was yesterday." — Navy SEALs',
+        '"Victory belongs to the most persevering." — Napoleon',
+        '"Deploy your first op, soldier."',
+        '"No mission too difficult, no sacrifice too great."',
+        '"Pain is weakness leaving the body."',
+        '"The more you sweat in training, the less you bleed in combat."',
+        '"Get comfortable being uncomfortable."',
+        '"Discipline equals freedom." — Jocko Willink',
+        '"Fortune favors the bold." — Virgil',
+        '"Stay hungry. Stay deadly."'
+      ];
+      const q=el('emptyQuote');if(q)q.textContent=quotes[Math.floor(Math.random()*quotes.length)];
+    }
+    return;
+  }
   if(empty)empty.style.display='none';
   const today=todayStr();
   if(list)list.innerHTML=tasks.map(t=>{
     const late=t.dueDate&&!t.done&&t.dueDate<today;
     const recIcon=t.recurring?'🔄 ':'';
-    return `<li class="task-item t-${t.cat}${t.done?' done':''}${late?' overdue':''}" id="ti-${t.id}">
+    return `<li class="task-item t-${t.cat}${t.done?' done':''}${late?' overdue':''}" id="ti-${t.id}" data-diff="${t.diff}">
       <div class="tcheck${t.done?' on':''}" onclick="toggleTask('${t.id}')"></div>
       <div class="task-body">
         <div class="task-txt" onclick="openModal('${t.id}')">${recIcon}${t.text}</div>
@@ -1198,10 +1417,16 @@ function toggleTask(id){
   setTimeout(()=>{
     const prevLvl=getLevel();
     const mult=getMult();
-    const earned=Math.round(t.xp*mult);
+    const comboM=getComboMult();
+    const earned=Math.round(t.xp*mult*comboM);
+    // Capture position BEFORE update() re-renders the list
+    let popX=window.innerWidth/2, popY=window.innerHeight/2;
+    const liEl=el('ti-'+id);
+    if(liEl){const r=liEl.getBoundingClientRect();popX=r.left+r.width/2;popY=r.top+r.height/2;}
     t.done=true;t.completedOn=todayStr();
     S.levelXP+=earned;S.totalXP+=earned;S.done++;S.lastDay=todayStr();
     S.dailyXPEarned=(S.dailyXPEarned||0)+earned;
+    registerCombo();
     if(t.diff==='legendary')S.legendaryDone=(S.legendaryDone||0)+1;
     if(!S.catsDone)S.catsDone=[];
     if(!S.catsDone.includes(t.cat)){S.catsDone.push(t.cat);S.catsUsed=S.catsDone.length;}
@@ -1212,7 +1437,9 @@ function toggleTask(id){
     playSound('complete');
     const newLvl=getLevel();
     save();updateChallengeProgress();checkAchievements();update();
-    if(li){const r=li.getBoundingClientRect();showXpPop(r.left+r.width/2,r.top+window.scrollY,earned,mult>1?' ×'+mult:'');spawnParticles(r.left+r.width/2,r.top+r.height/2);}
+    const comboTxt=comboActive?' 🔥COMBO':'';
+    showXpPop(popX,popY-20,earned,(mult>1||comboActive)?' ×'+(mult*comboM).toFixed(1)+comboTxt:'');
+    spawnParticles(popX,popY);
     if(newLvl>prevLvl&&newLvl<MAX_LVL)setTimeout(()=>showRankup(newLvl),600);
   },300);
 }
@@ -1247,7 +1474,7 @@ function pomTick(){
   if(pomSecs<=0){
     pomSecs=0;clearInterval(pomTimer);pomTimer=null;pomRunning=false;
     el('pomStartBtn').textContent='Start';el('pomStartBtn').classList.remove('go');
-    if(pomMode==='focus'){S.pomSessions=(S.pomSessions||0)+1;save();checkAchievements();showCenterPop('🍅 Focus Complete!');}
+    if(pomMode==='focus'){S.pomSessions=(S.pomSessions||0)+1;save();checkAchievements();showCenterPop('⚔ MISSION COMPLETE!');}
   }
   updatePom();
 }
@@ -1255,29 +1482,35 @@ function updatePom(){
   const m=Math.floor(pomSecs/60),s=pomSecs%60;
   set('pomTime',String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));
   if(el('pomFill'))el('pomFill').style.width=(pomSecs/pomTotal*100)+'%';
-  set('pomLbl',{focus:'FOCUS SESSION',short:'SHORT BREAK',long:'LONG BREAK'}[pomMode]);
+  set('pomLbl',{focus:'⚔ COMBAT SESSION',short:'🛡 SHORT REST',long:'🏕 LONG REST'}[pomMode]);
 }
 function pomToggle(){
   if(pomRunning){clearInterval(pomTimer);pomTimer=null;pomRunning=false;el('pomStartBtn').textContent='Resume';el('pomStartBtn').classList.remove('go');}
   else{pomRunning=true;pomTimer=setInterval(pomTick,1000);el('pomStartBtn').textContent='Pause';el('pomStartBtn').classList.add('go');}
 }
-function pomReset(){clearInterval(pomTimer);pomTimer=null;pomRunning=false;pomSecs={focus:25*60,short:5*60,long:15*60}[pomMode];pomTotal=pomSecs;el('pomStartBtn').textContent='Start';el('pomStartBtn').classList.remove('go');updatePom();}
-function pomSwitch(){pomMode=['focus','short','long'][(['focus','short','long'].indexOf(pomMode)+1)%3];el('pomModeBtn').textContent={focus:'Break',short:'Long',long:'Focus'}[pomMode];pomReset();}
+function pomReset(){clearInterval(pomTimer);pomTimer=null;pomRunning=false;const dur=parseInt((el('pomDurSel')||{}).value)||25;pomSecs={focus:dur*60,short:5*60,long:15*60}[pomMode];pomTotal=pomSecs;el('pomStartBtn').textContent='Start';el('pomStartBtn').classList.remove('go');updatePom();}
+function pomSwitch(){pomMode=['focus','short','long'][(['focus','short','long'].indexOf(pomMode)+1)%3];el('pomModeBtn').textContent={focus:'Rest',short:'Long Rest',long:'Combat'}[pomMode];pomReset();}
 
 // ═══ OVERLAYS ═══
 function showRankup(lvl){
   playSound('rankup');
-  set('ovTag','Promotion');set('ovBig','Rank Up!');set('ovSub','LVL '+lvl+' — '+getRank(lvl).toUpperCase());
+  set('ovTag','⚔ FIELD PROMOTION');set('ovBig','RANK UP!');
+  const rankText='LVL '+lvl+' — '+getRank(lvl).toUpperCase();
+  set('ovSub',rankText);
+  // Typewriter effect on subtitle
+  const subEl=el('ovSub');
+  if(subEl){subEl.classList.add('typewriter');setTimeout(()=>subEl.classList.remove('typewriter'),3000);}
   set('ovTitleBadge',getTitle()?'"'+getTitle()+'"':'');
   const ico=el('ovIcon');if(ico)ico.innerHTML=S.prestige>0&&PRESTIGE_IMGS[Math.min(S.prestige,11)]
     ?`<img class="ov-img" src="${PRESTIGE_IMGS[Math.min(S.prestige,11)]}" alt="">`:'';
   if(el('rankupOv'))el('rankupOv').style.display='flex';
+  goldRain();
   spawnParticles(window.innerWidth/2,window.innerHeight/2);
 }
 function closeRankup(){const ov=el('rankupOv');if(!ov)return;ov.classList.add('hide');setTimeout(()=>{ov.style.display='none';ov.classList.remove('hide');},400);}
 function openPrestige(){if(getLevel()<MAX_LVL||S.prestige>=11)return;const ico=el('prestigeIcon');if(ico)ico.innerHTML=S.prestige<11&&PRESTIGE_IMGS[S.prestige+1]?`<img class="ov-img" src="${PRESTIGE_IMGS[S.prestige+1]}" alt="">`:'';if(el('prestigeOv'))el('prestigeOv').style.display='flex';}
 function closePrestige(){const ov=el('prestigeOv');if(!ov)return;ov.classList.add('hide');setTimeout(()=>{ov.style.display='none';ov.classList.remove('hide');},400);}
-function doPrestige(){if(getLevel()<MAX_LVL||S.prestige>=11)return;S.prestige++;S.levelXP=0;closePrestige();save();playSound('prestige');update();checkAchievements();setTimeout(()=>{set('ovTag','Prestige Unlocked');set('ovBig','Prestige!');set('ovSub',PRESTIGE_NAMES[S.prestige].toUpperCase());const ico=el('ovIcon');if(ico)ico.innerHTML=S.prestige<=11&&PRESTIGE_IMGS[S.prestige]?`<img class="ov-img" src="${PRESTIGE_IMGS[S.prestige]}" alt="">`:'';if(el('rankupOv'))el('rankupOv').style.display='flex';spawnParticles(window.innerWidth/2,window.innerHeight/2);if(supabase)syncLB();},200);}
+function doPrestige(){if(getLevel()<MAX_LVL||S.prestige>=11)return;S.prestige++;S.levelXP=0;closePrestige();save();playSound('prestige');update();checkAchievements();setTimeout(()=>{set('ovTag','☠ PRESTIGE UNLOCKED');set('ovBig','PRESTIGE!');set('ovSub',PRESTIGE_NAMES[S.prestige].toUpperCase());const ico=el('ovIcon');if(ico)ico.innerHTML=S.prestige<=11&&PRESTIGE_IMGS[S.prestige]?`<img class="ov-img" src="${PRESTIGE_IMGS[S.prestige]}" alt="">`:'';if(el('rankupOv'))el('rankupOv').style.display='flex';goldRain();spawnParticles(window.innerWidth/2,window.innerHeight/2);if(supabase)syncLB();},200);}
 
 // ═══ STATS PAGE ═══
 function renderStats(){
@@ -1285,13 +1518,13 @@ function renderStats(){
   const kpi=el('kpiRow');
   if(kpi)kpi.innerHTML=`
     <div class="kpi"><div class="kpi-v">${S.totalXP.toLocaleString()}</div><div class="kpi-l">Total XP</div></div>
-    <div class="kpi"><div class="kpi-v">${S.done}</div><div class="kpi-l">Missions Done</div></div>
-    <div class="kpi"><div class="kpi-v">${S.streak}</div><div class="kpi-l">Day Streak</div></div>
+    <div class="kpi"><div class="kpi-v">${S.done}</div><div class="kpi-l">Ops Completed</div></div>
+    <div class="kpi"><div class="kpi-v">${S.streak}</div><div class="kpi-l">Killstreak</div></div>
     <div class="kpi"><div class="kpi-v">${S.prestige}</div><div class="kpi-l">Prestige</div></div>
     <div class="kpi"><div class="kpi-v">${lvl}</div><div class="kpi-l">Level</div></div>
     <div class="kpi"><div class="kpi-v">${S.legendaryDone||0}</div><div class="kpi-l">Legendary</div></div>
-    <div class="kpi"><div class="kpi-v">${S.pomSessions||0}</div><div class="kpi-l">Pomodoros</div></div>
-    <div class="kpi"><div class="kpi-v">${S.tasks.length>0?Math.round((done/S.tasks.length)*100):0}%</div><div class="kpi-l">Success Rate</div></div>
+    <div class="kpi"><div class="kpi-v">${S.pomSessions||0}</div><div class="kpi-l">Combat Sessions</div></div>
+    <div class="kpi"><div class="kpi-v">${S.tasks.length>0?Math.round((done/S.tasks.length)*100):0}%</div><div class="kpi-l">Kill Rate</div></div>
   `;
   // Week chart
   const wc=el('weekChart');if(wc){
@@ -1305,6 +1538,18 @@ function renderStats(){
       const h=Math.max(4,Math.round((vals[i]/maxV)*80));
       const isT=d.toISOString().slice(0,10)===tStr;
       return `<div class="bar-col"><div class="bar-val">${vals[i]?vals[i].toLocaleString():''}</div><div class="bar-fill${isT?' today':''}" style="height:${h}px"></div><div class="bar-lbl">${days[d.getDay()]}</div></div>`;
+    }).join('');
+  }
+  // 30-day trend chart
+  const tc=el('trendChart');if(tc){
+    const today=new Date(),last30=[];
+    for(let i=29;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);last30.push(d);}
+    const tVals=last30.map(d=>S.history[d.toISOString().slice(0,10)]||0);
+    const tMax=Math.max(...tVals,1);
+    tc.innerHTML=last30.map((d,i)=>{
+      const h=tVals[i]>0?Math.max(4,Math.round((tVals[i]/tMax)*70)):0;
+      const ds=d.toISOString().slice(5,10);
+      return `<div class="trend-bar${tVals[i]===0?' zero':''}" style="height:${h||2}px" data-tip="${ds}: ${tVals[i]} XP"></div>`;
     }).join('');
   }
   // Category chart
@@ -1329,7 +1574,7 @@ function updateOpCard(){
 }
 function shareCard(){
   const lvl=getLevel();
-  const text=`🎖️ DAILY OPS — OPERATOR CARD\n${'─'.repeat(28)}\n👤 ${S.playerName}\n🏅 ${PRESTIGE_NAMES[S.prestige]}\n⚔️  LVL ${lvl} — ${getRank(lvl)}\n💬 "${getTitle()}"\n${'─'.repeat(28)}\n⚡ ${S.totalXP.toLocaleString()} Total XP\n✅ ${S.done} Missions Done\n🔥 ${S.streak}-Day Streak\n${'─'.repeat(28)}\ndailyops.vercel.app`;
+  const text=`🎖️ DAILY OPS — COMBAT CARD\n${'─'.repeat(28)}\n👤 ${S.playerName}\n🏅 ${PRESTIGE_NAMES[S.prestige]}\n⚔️  LVL ${lvl} — ${getRank(lvl)}\n💬 "${getTitle()}"\n${'─'.repeat(28)}\n⚡ ${S.totalXP.toLocaleString()} Total XP\n✅ ${S.done} Ops Completed\n🔥 ${S.streak}-Killstreak\n${'─'.repeat(28)}\ndailyops.vercel.app`;
   navigator.clipboard.writeText(text).then(()=>showCenterPop('Copied to clipboard! 📋')).catch(()=>alert(text));
 }
 
@@ -1520,7 +1765,7 @@ function initNotifications(){
   }
 }
 
-// ── EXPORT OPERATOR CARD AS PNG ───────────────
+// ── EXPORT COMBAT CARD AS PNG ───────────────
 async function exportCardAsPNG(){
   const card=document.getElementById('opCard');
   if(!card){showCenterPop('Card not found');return;}
@@ -1626,22 +1871,30 @@ function toggleRoutine(id){
     S.totalXP=Math.max(0,S.totalXP-r.xp);
     S.done=Math.max(0,S.done-1);
   } else {
-    // Complete
+    // Complete — capture position BEFORE update re-renders
+    const recEl=document.querySelector(`[data-rec-id="${id}"]`);
+    let popX=window.innerWidth/2, popY=window.innerHeight/2;
+    if(recEl){const r2=recEl.getBoundingClientRect();popX=r2.left+r2.width/2;popY=r2.top+r2.height/2;}
     r.doneDate=today;
     const mult=getMult();
-    const earned=Math.round(r.xp*mult);
+    const comboM=getComboMult();
+    const earned=Math.round(r.xp*mult*comboM);
     S.levelXP+=earned;S.totalXP+=earned;S.done++;
     S.lastDay=today;
     S.dailyXPEarned=(S.dailyXPEarned||0)+earned;
     S.history[today]=(S.history[today]||0)+earned;
+    registerCombo();
     playSound('complete');
-    // XP popup
-    const recEl=document.querySelector(`[data-rec-id="${id}"]`);
-    if(recEl){const r2=recEl.getBoundingClientRect();showXpPop(r2.left+r2.width/2,r2.top+window.scrollY,earned,mult>1?' ×'+mult:'');spawnParticles(r2.left+r2.width/2,r2.top+r2.height/2);}
     // Check level up
     const prevLvl=getLevel()-1;
     const newLvl=getLevel();
+    // Now safe to update DOM
+    save();update();renderRoutines();
+    const comboTxt=comboActive?' 🔥':'';
+    showXpPop(popX,popY-20,earned,(mult>1||comboActive)?' ×'+(mult*comboM).toFixed(1)+comboTxt:'');
+    spawnParticles(popX,popY);
     if(newLvl>prevLvl&&newLvl<MAX_LVL)setTimeout(()=>showRankup(newLvl),600);
+    return;
   }
   save();update();renderRoutines();
 }
@@ -1717,6 +1970,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   el('pomStartBtn').addEventListener('click',pomToggle);
   el('pomResetBtn').addEventListener('click',pomReset);
   el('pomModeBtn').addEventListener('click',pomSwitch);
+  if(el('pomDurSel'))el('pomDurSel').addEventListener('change',pomReset);
   // Stats
   el('shareBtn').addEventListener('click',shareCard);
   // Settings
@@ -1724,6 +1978,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   el('tSound').addEventListener('click',()=>toggleSetting('sound'));
   el('tChallenges').addEventListener('click',()=>toggleSetting('challenges'));
   el('tParticles').addEventListener('click',()=>toggleSetting('particles'));
+  el('tCombo').addEventListener('click',()=>toggleSetting('combo'));
+  el('tZen').addEventListener('click',()=>{toggleSetting('zen');toggleZenMode();});
+  el('tScanlines').addEventListener('click',()=>{toggleSetting('scanlines');applyScanlines();});
   el('exportBtn').addEventListener('click',exportSave);
   el('importBtn').addEventListener('click',()=>el('importFile').click());
   el('importFile').addEventListener('change',function(){importSave(this);});
@@ -1734,7 +1991,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   el('recAddBtn').addEventListener('click',addRoutine);
   el('recInput').addEventListener('keydown',e=>{if(e.key==='Enter')addRoutine();});
   el('recHdr').addEventListener('click',toggleRecPanel);
-  el('recResetBtn').addEventListener('click',()=>{if(confirm('Reset all routines for today?'))resetRoutines();});
+  el('recResetBtn').addEventListener('click',()=>{if(confirm('Reset all orders for today?'))resetRoutines();});
   // Notification bell
   const nb=el('notifBtn');if(nb)nb.addEventListener('click',requestNotifPermission);
   // Streak banner close
@@ -1756,6 +2013,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderCalendar();
   showStreakBanner();
   initNotifications();
+  // Apply initial scanlines state
+  applyScanlines();
+  // Global keyboard shortcut: "/" to focus task input
+  document.addEventListener('keydown',e=>{
+    if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){
+      e.preventDefault();
+      const inp=el('taskInput');if(inp){inp.focus();inp.scrollIntoView({behavior:'smooth',block:'center'});}
+    }
+  });
 });
 </script>
 
